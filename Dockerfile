@@ -2,6 +2,9 @@ FROM ghcr.io/actions/actions-runner:2.323.0
 
 ARG MELANGE_VERSION=v0.23.10
 
+ENV HOMEBREW_NO_ANALYTICS=1 \
+    HOMEBREW_NO_ENV_HINTS=1
+
 USER root
 
 RUN \
@@ -14,7 +17,7 @@ RUN \
         moreutils \
         wget \
         zstd \
-        gcc \
+        build-essential \
         git \
     && \
     curl -fsSL "https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64" -o /usr/local/bin/yq \
@@ -32,4 +35,9 @@ RUN \
 
 USER runner
 
-RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+RUN \
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" \
+    && echo >> /home/runner/.bashrc \
+    && echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /home/runner/.bashrc \
+    && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" \
+    && brew install gcc awscli
