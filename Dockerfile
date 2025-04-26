@@ -6,7 +6,7 @@ USER root
 
 RUN \
     apt-get -qq update \
-    && apt-get -qq upgrade
+    && apt-get -qq upgrade \
     && \
     apt-get -qq install -y --no-install-recommends --no-install-suggests \
         ca-certificates \
