@@ -16,6 +16,8 @@ RUN \
         zstd \
         gcc \
         awscli \
+        apparmor \
+        apparmor-utils \
         $TEMP_DEPS \
     && \
     git clone https://github.com/containers/bubblewrap \
