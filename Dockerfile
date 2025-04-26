@@ -1,5 +1,6 @@
-ARG VERSION=2.323.0
-FROM ghcr.io/actions/actions-runner:${VERSION}
+FROM ghcr.io/actions/actions-runner:2.323.0
+
+ARG MELANGE_VERSION=v0.23.10
 
 USER root
 
@@ -16,8 +17,10 @@ RUN \
         awscli \
         bubblewrap
     && \
-    curl -fsSL "https://github.com/mikefarah/yq/releases/latest/download/yq_linux_${TARGETARCH}" -o /usr/local/bin/yq \
+    curl -fsSL "https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64" -o /usr/local/bin/yq \
         && chmod +x /usr/local/bin/yq \
+    && \
+    curl -fsL https://github.com/chainguard-dev/melange/releases/download/${MELANGE_VERSION}/melange_${MELANGE_VERSION#v}_linux_amd64.tar.gz | tar xzf - --strip-components=1 -C /usr/local/bin \
     && \
     mkdir -p -m 755 /etc/apt/keyrings \
         && out=$(mktemp) && wget -nv -O$out https://cli.github.com/packages/githubcli-archive-keyring.gpg \
