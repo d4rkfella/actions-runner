@@ -45,6 +45,7 @@ RUN \
     && apt-get purge -y --auto-remove $TEMP_DEPS \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+
 USER runner
 
 RUN curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh
