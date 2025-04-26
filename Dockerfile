@@ -17,6 +17,7 @@ RUN \
         zstd \
         gcc \
         awscli \
+        $TEMP_DEPS \
     && \
     git clone https://github.com/containers/bubblewrap \
         && pushd bubblewrap \
