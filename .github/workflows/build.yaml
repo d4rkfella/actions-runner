@@ -53,6 +53,11 @@ jobs:
     - name: Install Semver
       run: npm install semver
 
+    - name: Install AppArmor and AppArmor-utils
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y apparmor apparmor-utils
+
     - name: Extract version from base image
       shell: bash
       run: |
