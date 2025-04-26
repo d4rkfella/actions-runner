@@ -15,6 +15,7 @@ RUN \
         wget \
         zstd \
         gcc \
+        git \
     && \
     curl -fsSL "https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64" -o /usr/local/bin/yq \
         && chmod +x /usr/local/bin/yq \
@@ -31,4 +32,4 @@ RUN \
 
 USER runner
 
-RUN curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh
+RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
