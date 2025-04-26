@@ -3,7 +3,8 @@ FROM ghcr.io/actions/actions-runner:2.323.0
 ARG MELANGE_VERSION=v0.23.10
 
 ENV HOMEBREW_NO_ANALYTICS=1 \
-    HOMEBREW_NO_ENV_HINTS=1
+    HOMEBREW_NO_ENV_HINTS=1 \
+    PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
 
 USER root
 
