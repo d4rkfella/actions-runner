@@ -6,6 +6,7 @@ USER root
 
 RUN \
     apt-get -qq update \
+    && apt-get -qq upgrade
     && \
     apt-get -qq install -y --no-install-recommends --no-install-suggests \
         ca-certificates \
@@ -14,7 +15,6 @@ RUN \
         wget \
         zstd \
         gcc \
-        awscli \
     && \
     curl -fsSL "https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64" -o /usr/local/bin/yq \
         && chmod +x /usr/local/bin/yq \
