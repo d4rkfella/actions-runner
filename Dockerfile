@@ -26,8 +26,8 @@ RUN \
         && ninja install \
         && cd .. \
         && rm -rf bubblewrap \
-    curl -fsSL "https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64" -o /usr/local/bin/yq \
-        && chmod +x /usr/local/bin/yq \
+    && \ curl -fsSL "https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64" -o /usr/local/bin/yq \
+             && chmod +x /usr/local/bin/yq \
     && \
     curl -fsL https://github.com/chainguard-dev/melange/releases/download/${MELANGE_VERSION}/melange_${MELANGE_VERSION#v}_linux_amd64.tar.gz | tar xzf - --strip-components=1 -C /usr/local/bin \
     && \
