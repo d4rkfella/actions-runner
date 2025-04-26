@@ -56,15 +56,8 @@ jobs:
     - name: Extract version from base image
       shell: bash
       run: |
-        BASE_IMAGE=$(grep -oP '(?<=^FROM\s)[^\s]+' Dockerfile | head -n 1)
-        BASE_IMAGE_VERSION=$(crane config $BASE_IMAGE | jq -r '.config.Labels["org.opencontainers.image.version"]')
-        
-        if [ -z "$BASE_IMAGE_VERSION" ]; then
-          echo "No version label found in $BASE_IMAGE"
-          exit 1
-        fi
-        
-        echo "VERSION=${BASE_IMAGE_VERSION}" >> $GITHUB_ENV
+        BASE_IMAGE_TAG=$(grep -oP '(?<=^FROM\s)[^\s]+' Dockerfile | head -n1 | awk -F':' '{print $2}')
+        echo "VERSION=${BASE_IMAGE_TAG}" >> $GITHUB_ENV
 
     - name: Log in to GitHub Container Registry (GHCR)
       uses: docker/login-action@74a5d142397b4f367a81961eba4e8cd7edddf772 # v3.4.0
