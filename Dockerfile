@@ -15,7 +15,7 @@ RUN \
         zstd \
         gcc \
         awscli \
-        bubblewrap
+        bubblewrap \
     && \
     curl -fsSL "https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64" -o /usr/local/bin/yq \
         && chmod +x /usr/local/bin/yq \
