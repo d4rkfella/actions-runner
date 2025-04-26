@@ -19,12 +19,12 @@ RUN \
         $TEMP_DEPS \
     && \
     git clone https://github.com/containers/bubblewrap \
-        && pushd bubblewrap \
+        && cd bubblewrap \
         && meson --prefix=/usr -Drequire_userns=true . output \
         && cd output \
         && ninja \
         && ninja install \
-        && popd \
+        && cd .. \
         && rm -rf bubblewrap \
     curl -fsSL "https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64" -o /usr/local/bin/yq \
         && chmod +x /usr/local/bin/yq \
