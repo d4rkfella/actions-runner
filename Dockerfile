@@ -5,7 +5,7 @@ ARG MELANGE_VERSION=v0.23.10
 USER root
 
 RUN \
-    TEMP_DEPS="build-essential git meson ninja-build libcap-dev" && \
+    TEMP_DEPS="build-essential git meson ninja-build libcap-dev pkg-config cmake" && \
     apt-get -qq update \
     && \
     apt-get -qq install -y --no-install-recommends --no-install-suggests \
