@@ -26,7 +26,6 @@ RUN \
         && ninja install \
         && cd .. \
         && rm -rf bubblewrap \
-    && mkdir -p /etc/apparmor.d && wget -O /etc/apparmor.d/usr.bin.bwrap https://gitlab.com/apparmor/apparmor/-/raw/master/profiles/apparmor/profiles/extras/bwrap-userns-restrict?ref_type=heads \
     && curl -fsSL "https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64" -o /usr/local/bin/yq \
         && chmod +x /usr/local/bin/yq \
     && \
