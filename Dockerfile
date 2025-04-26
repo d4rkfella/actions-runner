@@ -16,8 +16,6 @@ RUN \
         zstd \
         gcc \
         awscli \
-        apparmor \
-        apparmor-utils \
         $TEMP_DEPS \
     && \
     git clone https://github.com/containers/bubblewrap \
@@ -29,7 +27,6 @@ RUN \
         && cd .. \
         && rm -rf bubblewrap \
     && mkdir -p /etc/apparmor.d && wget -O /etc/apparmor.d/usr.bin.bwrap https://gitlab.com/apparmor/apparmor/-/raw/master/profiles/apparmor/profiles/extras/bwrap-userns-restrict?ref_type=heads \
-    && apparmor_parser -r /etc/apparmor.d/usr.bin.bwrap \
     && curl -fsSL "https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64" -o /usr/local/bin/yq \
         && chmod +x /usr/local/bin/yq \
     && \
